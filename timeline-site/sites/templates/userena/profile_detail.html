@@ -3,12 +3,12 @@
 {% load i18n %}
 
 {% block title %}
-  {{ profile.user.username }}的帐号
+  {{ profile.user.username }}'s Account
 {% endblock %}
 
 {% block content_title %}
   <h1>
-    {{ profile.user.username }}的帐号
+    {{ profile.user.username }}'s Account
   </h2>
 {% endblock %}
 
@@ -33,18 +33,21 @@
         {% endif %}
       </div>
       <div class="info">
-        <p><strong>加入时间</strong> {{ profile.user.date_joined|date:"Y-m-d H:i" }} </p>
-        <p><strong>最近登录</strong> {{ profile.user.last_login|date:"Y-m-d H:i" }} </p>
-        <p><strong>{% trans "Website" %}</strong> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
-        <p><strong>{% trans "Location" %}</strong> {{ profile.location }}</p>
-        <p><strong>{% trans "About me" %}</strong><br />{{ profile.about_me|md }}</p>
+        {# <p><strong>加入时间</strong> {{ profile.user.date_joined|date:"Y-m-d H:i" }} </p> #} 
+        {# <p><strong>最近登录</strong> {{ profile.user.last_login|date:"Y-m-d H:i" }} </p> #}
+        <p><strong>Signup Time</strong> {{ profile.user.date_joined|date:"m/d/Y H:i" }} </p>
+        <p><strong>Latest Login</strong> {{ profile.user.last_login|date:"m/d/Y H:i" }} </p>        
+        {# <<p><strong>{% trans "Website" %}</strong> <a href="{{ profile.website }}">{{ profile.website }}</a></p> #} 
+        {# <<p><strong>{% trans "Location" %}</strong> {{ profile.location }}</p> #} 
+        {# <<p><strong>{% trans "About me" %}</strong><br />{{ profile.about_me|md }}</p> #} 
       </div>
     </div>
 
     <hr />
 
     <div class="timelines" id="id_tls">
-      <h2>{{profile}} 创建的时间线</h2>
+      {# <h2>{{profile}} 创建的时间线</h2> #}
+      <h2>{{profile}}'s Timeline</h2>      
       {% load pagination_tags %}
       {% autopaginate timelines %}
       {% if timelines %}
@@ -56,18 +59,18 @@
             <div class="info">
               <h3>
                 <a href="{% url timeline_detail o.pk %}">{{o.title}}</a>
-                {% if o.status == "draft" %} (草稿) {% endif %}
+                {% if o.status == "draft" %} (Draft) {% endif %}
               </h3>
               <div class="extinfo">
-                <span>事件: {{o.num_events}}</span>
-                <span>浏览: {{o.num_views}}</span>
-                <span>回复: {{o.num_replies}}</span>
+                <span>Event: {{o.num_events}}</span>
+                <span>View: {{o.num_views}}</span>
+                <span>Reply: {{o.num_replies}}</span>
                 <span>by: 
                   <a href="{% url userena_profile_detail o.created_by.username %}">
                     {{o.created_by}}
                   </a>
                 </span>
-                <span>创建: {{ o.created_on|date:"Y-m-d H:i"}}</span>
+                <span>Created {{ o.created_on|date:"m/d/Y H:i"}}</span>
               </div>
               {{ o.intro|slice:"160"|linebreaksbr }}{% if o.intro|length > 340 %}...{% endif %} 
             </div>
@@ -75,7 +78,7 @@
         {% endfor %}
         {% paginate %}
       {% else %}
-        还没有创建任何的时间线
+        You Don't Have Any Timeline
       {% endif %}
       
     </div>

@@ -11,7 +11,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">似水流年</a>
+          <a class="brand" href="/">TimesOpenLine</a>
           <script type="text/javascript">
             var dispatch = function() {
               q = document.getElementById("q");
@@ -27,28 +27,32 @@
             <input name="q" id="q" type="text" placeholder="Search" style="width: 160px">
           </form>
           <ul class="nav">
-            <li><a href="{% url timeline_recommend %}">推荐</a></li>
-            <li><a href="{% url timeline_hot %}">热门</a></li>
-            <li><a href="{% url timeline_last %}">最新</a></li>
-            <li><a href="{% url timeline_tags %}">标签云</a></li>
+            {# <li><a href="{% url timeline_recommend %}">推荐</a></li> #}
+            {# <li><a href="{% url timeline_hot %}">热门</a></li> #}
+            {# <li><a href="{% url timeline_last %}">最新</a></li> #}
+            {# <li><a href="{% url timeline_tags %}">标签云</a></li> #}
+            <li><a href="{% url timeline_recommend %}">Recommendation</a></li>
+            <li><a href="{% url timeline_hot %}">Popular</a></li>
+            <li><a href="{% url timeline_last %}">Latest</a></li>
+            <li><a href="{% url timeline_tags %}">Tags</a></li>            
           </ul>
           <ul class="nav pull-right">
-            <li><a href="{% url timeline_new %}"><span>创建时间线</span></a></li>
+            <li><a href="{% url timeline_new %}"><span>Create Timeline</span></a></li>
             {% if user.is_authenticated %}
-              <li><a href="{% url userena_profile_detail user.username %}#id_tls"><span>我的时间线</span></a></li>
+              <li><a href="{% url userena_profile_detail user.username %}#id_tls"><span>My Timeline</span></a></li>
               <li>
                 <a href="{% url userena_profile_detail user.username %}">
-                  <span> {{ user.username }}的帐号 </span>
+                  <span> {{ user.username }}'s Account </span>
                 </a>
               </li>
               <li><a href="{% url userena_umessages_list %}">
                   {% get_unread_message_count_for user as unread_message_count %}
                   <span id="nav_msg" class="{% if unread_message_count %}have-new-msg{% endif %}">
-                    消息({{unread_message_count}})
+                    Message({{unread_message_count}})
                   </span>
                 </a>
               </li>
-              <li><a href="{% url userena_signout %}"><span>退出</span></a></li>
+              <li><a href="{% url userena_signout %}"><span>Signout</span></a></li>
             {% else %}
               <li><a href="{% url userena_signin %}"><span>{% trans 'Signin' %}</span></a></li>
               <li><a href="{% url userena_signup %}"><span>{% trans 'Signup' %}</span></a></li>
@@ -97,14 +101,14 @@
           </a>
         </p>
         <p class="lks">
-          <a href="{% url timeline_about %}">关于</a>
+          <a href="{% url timeline_about %}">About</a>
           <span>|</span>
           <a href="{% url timeline_faq %}">FAQ</a>
           <span>|</span>
-          <a href="http://haoluobo.com" target="_blank">博客</a>
+          <a href="http://haoluobo.com" target="_blank">Blog</a>
         </p>
         <p>
-          &copy; 2012 jstwind.com, all rights reserved 
+
         </p>
       </div>
     </footer>
