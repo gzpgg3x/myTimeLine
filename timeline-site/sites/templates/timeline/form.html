@@ -54,11 +54,14 @@
         {{ form.as_div }}
         <div class="form-actions" class="form-horizontal">
           <p>
-            <button type="submit" class="btn btn-primary">提交</button>
+            {# <button type="submit" class="btn btn-primary">提交</button> #}
+            <button type="submit" class="btn btn-primary">Submit</button>            
             {% if tl %}
-              <a class="btn" href="{% url timeline_detail tl.pk %}">取消</a>
+              {# <a class="btn" href="{% url timeline_detail tl.pk %}">取消</a> #}
+              <a class="btn" href="{% url timeline_detail tl.pk %}">Cancel</a>              
             {% else %}
-              <a class="btn" href="{% url idx %}">取消</a>
+              {# <a class="btn" href="{% url idx %}">取消</a> #}
+              <a class="btn" href="{% url idx %}">Cancel</a>              
             {% endif %}
           </p>
         </div>

@@ -200,7 +200,8 @@ def events_json_(request, pk):
     for e in events:
         date.append(event_to_dict(e))
     if not events.count():#if no events will get a js error.
-        date.append({"startDate": "2012", 'headline': u'现在还没有任何事件，请先添加事件'})
+        # date.append({"startDate": "2012", 'headline': u'现在还没有任何事件，请先添加事件'})
+        date.append({"startDate": "2014", 'headline': u'You have no events yet，add event first'})        
     return render_json_response(t)
 
 def events_sjson_(request, pk):
