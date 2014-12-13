@@ -29,7 +29,8 @@
       <div class="mugshot">
         <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
         {% if user.is_authenticated and user.username != profile.user.username %}
-          <a href="{% url userena_umessages_compose_to profile.user.username %}" class="btn" style="margin: 6px 8px">发私信</a>
+          {# <a href="{% url userena_umessages_compose_to profile.user.username %}" class="btn" style="margin: 6px 8px">发私信</a> #}
+          <a href="{% url userena_umessages_compose_to profile.user.username %}" class="btn" style="margin: 6px 8px">Send Message</a>          
         {% endif %}
       </div>
       <div class="info">

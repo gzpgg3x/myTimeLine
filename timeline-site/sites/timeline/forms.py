@@ -13,7 +13,8 @@ class TimelineForm(BootstrapModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TimelineForm, self).__init__(*args, **kwargs)
-        self.fields['status'].choices = (('draft', u'草稿'), ('pub', u'发布'), )
+        # self.fields['status'].choices = (('draft', u'草稿'), ('pub', u'发布'), )
+        self.fields['status'].choices = (('draft', u'Draft'), ('pub', u'Publish'), )        
 
     class Meta:
         model = Timeline
@@ -35,7 +36,8 @@ def valid_date(s):
     for fmt in fmts:
         if re.search(fmt, s):
             return
-    raise ValidationError(u'无法识别该日期格式')
+    # raise ValidationError(u'无法识别该日期格式')
+    raise ValidationError(u'Invalid Date Format')    
 
 class TlEventForm(BootstrapModelForm):
 

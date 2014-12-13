@@ -3,29 +3,29 @@
 {% load timeline_widget_tags %}
 
 {% block title %} 
-  {% if pg == "hot" %} 热门 {% endif %}
-  {% if pg == "last" %} 最新 {% endif %}
-  {% if pg == "recommend" %} 推荐 {% endif %}
-  {% if pg == "random" %} 发现 {% endif %}
-  {% if pg == "tag" %} 标签 {{ tag.name }} {% endif %}
+  {% if pg == "hot" %} Hot {% endif %}
+  {% if pg == "last" %} Last {% endif %}
+  {% if pg == "recommend" %} Recommend {% endif %}
+  {% if pg == "random" %} Random {% endif %}
+  {% if pg == "tag" %} Tag {{ tag.name }} {% endif %}
   -
-  似水流年，岁月留痕 - 用时间线来展现历史 
+  TimesOpenLine 
 {% endblock %}
 
 {% block container_top %}
 <h1>
-  {% if pg == "hot" %} 热门 {% endif %}
-  {% if pg == "last" %} 最新 {% endif %}
-  {% if pg == "recommend" %} 推荐 {% endif %}
-  {% if pg == "random" %} 发现 {% endif %}
-  {% if pg == "tag" %} 标签 {{ tag.name }} {% endif %}
+  {% if pg == "hot" %} Hot {% endif %}
+  {% if pg == "last" %} Last {% endif %}
+  {% if pg == "recommend" %} Recommend {% endif %}
+  {% if pg == "random" %} Random {% endif %}
+  {% if pg == "tag" %} Tag {{ tag.name }} {% endif %}
 </h1>
 {% endblock %}
 
 {% block sidebar %}
   <div class="sidebar">
     <div class="well">
-      <h4>最新时间线</h4>
+      <h4>Latest Timeline</h4>
       <ul>
         {% tl_last %}
       </ul>

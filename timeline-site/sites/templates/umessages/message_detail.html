@@ -6,9 +6,11 @@
   {% get_setting "SYSTEM_USER_ID" 0 "SYSTEM_USER_ID" %}
   <h2>
     {% if recipient.pk == SYSTEM_USER_ID %}
-      <span class="sysuser"> 系统消息 </span>
+      {# <span class="sysuser"> 系统消息 </span> #}
+      <span class="sysuser"> System Info </span>      
     {% else %}
-      与 {{ recipient }} 的消息记录
+      {# 与 {{ recipient }} 的消息记录 #}
+      And {{ recipient }} 's Message Record      
     {% endif %}
   </h2>
 {% endblock %}
@@ -20,7 +22,8 @@
       {% if recipient.pk != SYSTEM_USER_ID %}
       <a href="{% url userena_umessages_compose_to recipient.username %}" class="btn">
         <i class="icon-share-alt"></i>
-        回复
+        {# 回复 #}
+        Reply 
       </a>
       {% endif %}
     </div>

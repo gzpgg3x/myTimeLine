@@ -118,14 +118,16 @@ def edit(request, pk):
     template_name = 'timeline/form.html'
     timeline = get_object_or_404(Timeline, pk=pk)
     if not timeline.can_edit(request.user):
-        return HttpResponse(u'您没有权限执行该操作')
+        # return HttpResponse(u'您没有权限执行该操作')
+        return HttpResponse(u'You are not authorized to do this')        
     ctx['tl'] = timeline
     form = TimelineForm(instance=timeline)
     if request.method == "POST":
         form = TimelineForm(request.POST, request.FILES, instance=timeline)
         if form.is_valid():
             form.save()
-            messages.info(request, u'成功编辑')
+            # messages.info(request, u'成功编辑')
+            messages.info(request, u'Edit successfully')            
             return redirect('timeline_detail', timeline.pk)
     ctx['form'] = form
     ctx['tl'] = timeline

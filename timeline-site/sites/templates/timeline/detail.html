@@ -4,7 +4,8 @@
 
 {% block title %}
   {{ tl.title }}
-  - 时间线
+  {# - 时间线 #}
+  - Timeline
 {% endblock %}
 
 {% block extra_header %}
@@ -61,16 +62,20 @@
     <div class="info">
       <ul>
         <li><a href="{% url userena_profile_detail tl.created_by.username %}">{{ tl.created_by.profile }}</a></li>
-        <li>创建于： {{ tl.created_on|date:"Y-m-d H:i"}}</li>
-        <li>更新于： {{ tl.updated_on|date:"Y-m-d H:i"}}</li>
+        {# <li>创建于： {{ tl.created_on|date:"Y-m-d H:i"}}</li> #}
+        {# <li>更新于： {{ tl.updated_on|date:"Y-m-d H:i"}}</li> #}
+        <li>Created： {{ tl.created_on|date:"m/d/Y H:i"}}</li>
+        <li>Updated： {{ tl.updated_on|date:"m/d/Y H:i"}}</li>        
       </ul>
     </div>
   </div>
   <div class="well">
-      <a class="btn" data-toggle="modal" href="#embedCodeModal">将时间线嵌入你的网站</a>
+      {# <a class="btn" data-toggle="modal" href="#embedCodeModal">将时间线嵌入你的网站</a> #}
+      <a class="btn" data-toggle="modal" href="#embedCodeModal">Embed Timeline To Your Website</a>      
   </div>
   <div class="well">
-    <h4>协作者</h4>
+    {# <h4>协作者</h4> #}
+    <h4>Assistant</h4>    
     <div class="sidelables">
       {% for o in collaborators %}
         <a href="{% url userena_profile_detail o.username %}"> 
@@ -79,20 +84,24 @@
       {% endfor %}
     </div>
     <div>
-      <a class="btn" href="{% url userena_umessages_compose_to tl.created_by.username %}">申请加入</a>
+      {# <a class="btn" href="{% url userena_umessages_compose_to tl.created_by.username %}">申请加入</a> #}
+      <a class="btn" href="{% url userena_umessages_compose_to tl.created_by.username %}">Apply To Register</a>
     </div>
   </div>
 
   {% if auth_can_edit %}
     <div class="well">
-      <h4>管理</h4>
+      {# <h4>管理</h4> #}
+      <h4>Manage</h4>      
       <ul>
-        <li><a href="{% url timeline_edit tl.pk %}">编辑基础信息</a></li>
-        <li><a href="{% url timeline_events tl.pk %}">编辑事件</a></li>
+        {# <li><a href="{% url timeline_edit tl.pk %}">编辑基础信息</a></li> #}
+        {# <li><a href="{% url timeline_events tl.pk %}">编辑事件</a></li> #}
+        <li><a href="{% url timeline_edit tl.pk %}">Edit Basic Info</a></li>
+        <li><a href="{% url timeline_events tl.pk %}">Edit Event</a></li>        
         {% if user == tl.created_by %}
-        <li><a href="{% url timeline_edit_collaboration tl.pk %}">管理协作者</a></li>
+        {# <li><a href="{% url timeline_edit_collaboration tl.pk %}">管理协作者</a></li> #}
         <li><a href="{% url timeline_delete tl.pk %}" 
-              onclick="return confirm('您确定需要删除该时间线？删除后将无法恢复')">删除事件</a></li>
+              onclick="return confirm('您确定需要删除该时间线？删除后将无法恢复')">Delete Event</a></li>
         {% endif %}
       </ul>
     </div>
@@ -104,18 +113,23 @@
 <div id="container_top" style="padding-bottom: 20px;">
   <div class="sw">
     {% if auth_can_edit %}
-      <a href="{% url timeline_edit tl.pk %}">编辑基础信息</a>
+      {# <a href="{% url timeline_edit tl.pk %}">编辑基础信息</a> #}
+      <a href="{% url timeline_edit tl.pk %}">Edit Basic Info</a>      
       <span>|</span>
-      <a href="{% url timeline_events tl.pk %}">编辑事件</a>
+      {# <a href="{% url timeline_events tl.pk %}">编辑事件</a> #}
+      <a href="{% url timeline_events tl.pk %}">Edit Event</a>      
       <span>|</span>
     {% else %}
-      <a href="{% url timeline_events tl.pk %}">文字版</a>
+      {# <a href="{% url timeline_events tl.pk %}">文字版</a> #}
+      <a href="{% url timeline_events tl.pk %}">Text Only</a>      
       <span>|</span>
     {% endif %}
-    <a href="{% url timeline_full_screen tl.pk %}">精简模式</a>
+    {# <a href="{% url timeline_full_screen tl.pk %}">精简模式</a> #}
+    <a href="{% url timeline_full_screen tl.pk %}">Simplified</a>    
   </div>
   <ul class="sbreadcrumb">
-    <li><a href="{% url idx %}">首页</a> <span class="divider">/</span></li>
+    {# <li><a href="{% url idx %}">首页</a> <span class="divider">/</span></li> #}
+    <li><a href="{% url idx %}">Homepage</a> <span class="divider">/</span></li>    
     <li class="active">{{ tl.title }}</li>
   </ul>
   <div>
@@ -129,7 +143,8 @@
 
   <div>
     <div id="ckepop" style="float: right;">
-      <span class="jiathis_txt">分享到：</span>
+      {# <span class="jiathis_txt">分享到：</span> #}
+      <span class="jiathis_txt">Share To：</span>      
       <a class="jiathis_button_tsina"></a>
       <a class="jiathis_button_qzone"></a>
       <a class="jiathis_button_tqq"></a>
@@ -140,7 +155,8 @@
     </div>
     <script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
     <div>
-      {{ tl.num_events }} 事件  |  {{ tl.num_views }} 浏览 |  {{ tl.num_replies }} 回复
+      {# {{ tl.num_events }} 事件  |  {{ tl.num_views }} 浏览 |  {{ tl.num_replies }} 回复 #}
+      {{ tl.num_events }} Event  |  {{ tl.num_views }} View |  {{ tl.num_replies }} Reply      
     </div>
   </div>
 
@@ -148,14 +164,16 @@
     <div>
       {{ tl.intro|md }}
     </div>
-    <h3>评论</h3>
+    {# <h3>评论</h3> #}
+    <h3>Comment</h3>    
     <div class="comments" id="id_comments">
       {% for c in comments %}
         {% include "timeline/inc_comment.html" %}
       {% endfor %}
     </div>
     {% if user.is_authenticated %}
-      <h3>发表评论</h3>
+      {# <h3>发表评论</h3> #}
+      <h3>Add Your Comments</h3>      
       <div>
         <form action="{% url timeline_postcomment_ tl.pk %}" method="post" id="comment_from">
           {% csrf_token %}
@@ -163,14 +181,16 @@
             {{ form.content }}
           </p>
           <p style="clear:both;">
-            <input type="submit" name="post" class="btn btn-primary" id="id_btn_submit" value="提交">
+            <input type="submit" name="post" class="btn btn-primary" id="id_btn_submit" value="Submit">
           </p>
         </form>
       </div>
     {% else %}
       <h3>
-        您还未登录，请在<a href="{% url userena_signin %}">登录</a>后发表评论。
-        如果您还没有帐号，请先<a href="{% url userena_signup %}">注册</a>。
+        {# 您还未登录，请在<a href="{% url userena_signin %}">登录</a>后发表评论。#}
+        If you are not signed in, please <a href="{% url userena_signin %}">Sign In here</a>Then add your commnents。        
+        {# 如果您还没有帐号，请先<a href="{% url userena_signup %}">注册</a>。 #}
+        If you don't have an account，please<a href="{% url userena_signup %}">Register</a>。        
       </h3>
     {% endif %}
   </div>
@@ -178,11 +198,13 @@
   <div class="modal hide" id="embedCodeModal">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">x</button>
-      <h3>获取嵌入代码</h3>
+      {# <h3>获取嵌入代码</h3> #}
+      <h3>Obtain Embed Code</h3>      
     </div>
     <div class="modal-body">
       <div class="input-prepend" style="margin-bottom: 8px">
-        <strong style="margin-right: 20px">大小</strong>
+        {# <strong style="margin-right: 20px">大小</strong> #}
+        <strong style="margin-right: 20px">Size</strong>        
         <span class="add-on">Width</span><input type="text" placeholder="900" value="900" id="embed-width" class="input-mini">
         <span class="add-on">Height</span><input type="text" placeholder="650" value="650" id="embed-height" class="input-mini">
       </div>
